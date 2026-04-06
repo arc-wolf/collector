@@ -1,0 +1,4 @@
+{"ts":"2026-04-03T07:30:42Z","event":"admin_login_failed","meta":{"username":"admin","ip":"127.0.0.1"}}
+{"ts":"2026-04-03T07:31:00Z","event":"admin_login_success","meta":{"username":"admin","ip":"127.0.0.1"}}
+{"ts":"2026-04-03T07:35:41Z","event":"admin_login_success","meta":{"username":"admin","ip":"127.0.0.1"}}
+{"ts":"2026-04-03T07:45:57Z","event":"admin_login_success","meta":{"username":"admin","ip":"127.0.0.1"}}
