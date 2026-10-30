@@ -58,17 +58,18 @@ function admin_login(PDO $pdo, array $config, string $username, string $password
     $stmt->execute([':u' => $username]);
     $admin = $stmt->fetch();
 
-    $ok = false;
-    if ($admin && password_verify($password, (string) $admin['password_hash'])) {
-        $ok = true;
+    $ok = $admin && password_verify($password, (string) $admin['password_hash']);
+
+    if ($ok) {
+        // Prevent session fixation when privileges are granted.
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            session_regenerate_id(true);
+        }
         $_SESSION['admin'] = ['id' => (int) $admin['id'], 'username' => $admin['username']];
-    } elseif (!empty($config['admin_password_hash']) && $username === 'admin' && password_verify($password, (string) $config['admin_password_hash'])) {
-        $ok = true;
-        $_SESSION['admin'] = ['id' => 0, 'username' => 'admin'];
     }
 
-    admin_record_attempt($pdo, $ip, $ok);
-    return $ok;
+    admin_record_attempt($pdo, $ip, (bool) $ok);
+    return (bool) $ok;
 }
 
 function admin_logout(): void

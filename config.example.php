@@ -2,7 +2,7 @@
 return [
     'DB_DSN' => 'mysql:host=127.0.0.1;dbname=collector;charset=utf8mb4',
     'DB_USER' => 'collector_user',
-    'DB_PASS' => 'change_me',
+    'DB_PASS' => '', // Set a unique database password for this installation.
 
     // Allowed student client networks.
     'allowed_cidrs' => [
@@ -27,9 +27,6 @@ return [
     // Absolute paths outside webroot.
     'upload_dir' => '/srv/collector/uploads',
     'temp_dir' => '/srv/collector/tmp',
-
-    // Optional fallback if admins table is unavailable.
-    'admin_password_hash' => '',
 
     'zip_retention_days' => 14,
     'lockout_max_attempts' => 5,

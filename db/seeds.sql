@@ -1,6 +1,10 @@
-INSERT INTO admins (username, password_hash)
-VALUES (
-    'admin',
-    '$2y$12$WfeRJifaDC1trpqIOUEbQui2mr6WefRl0rfJbY6rBMYBt15SvFHhC'
-)
-ON DUPLICATE KEY UPDATE password_hash = VALUES(password_hash);
+-- No default administrator is seeded.
+-- After importing schema.sql, create a unique administrator using:
+--
+-- APP_CONFIG=/etc/collector/config.php \
+-- COLLECTOR_ADMIN_USERNAME=admin \
+-- COLLECTOR_ADMIN_PASSWORD='use-a-unique-password-of-at-least-14-characters' \
+-- php bin/create_admin.php
+--
+-- The command stores a password_hash() value and refuses to overwrite an
+-- existing administrator. Do not commit real credentials to this repository.
